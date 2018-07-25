@@ -1,0 +1,114 @@
+Last login: Wed Jul 25 12:11:48 on ttys001
+Benjamins-MacBook-Air:~ Benjamin$ sqlite3 dummy.db
+SQLite version 3.19.3 2017-06-27 16:48:08
+Enter ".help" for usage hints.
+sqlite> CREATE TABLE users (
+   ...>   id INTEGER PRIMARY KEY AUTOINCREMENT,
+   ...>   first_name VARCHAR(64) NOT NULL,
+   ...>   last_name VARCHAR(64) NOT NULL,
+   ...>   email VARCHAR(128) UNIQUE NOT NULL,
+   ...>   created_at DATETIME NOT NULL,
+   ...>   updated_at DATETIME NOT NULL
+   ...> );
+sqlite> INSERT INTO users
+   ...> (first_name, last_name, email, created_at, updated_at)
+   ...> VALUES
+   ...> ('Joshua', 'Teng', 'jedicoder@example.com', DATETIME('now'), DATETIME('now'));
+sqlite> SELECT * FROM users;
+1|Joshua|Teng|jedicoder@example.com|2018-07-25 05:50:57|2018-07-25 05:50:57
+sqlite> INSERT INTO users
+   ...>    ...> (first_name, last_name, email, created_at, updated_at)
+   ...>    ...> VALUES
+   ...>    ...> ('Benjamin', 'Gibbons', 'b.g188s@gmail.com', DATETIME('now'), DATETIME('now'));
+Error: near ".": syntax error
+sqlite> INSERT INTO users
+   ...>    ...> (first_name, last_name, email, created_at, updated_at)
+   ...>    ...> VALUES
+   ...>    ...> ('Benjamin', 'Gibbons', 'b.g188s@gmail.com', DATETIME('now'), DATETIME('now'));
+Error: near ".": syntax error
+sqlite> INSERT INTO users
+   ...> (first_name, last_name, email, created_at, updated_at)
+   ...> VALUES
+   ...> ('Benjamin', 'Gibbons', 'b.g188s@gmail.com', DATETIME('now'), DATETIME('now'));
+sqlite> select * from users
+   ...> ;
+1|Joshua|Teng|jedicoder@example.com|2018-07-25 05:50:57|2018-07-25 05:50:57
+2|Benjamin|Gibbons|b.g188s@gmail.com|2018-07-25 05:55:32|2018-07-25 05:55:32
+sqlite> INSERT INTO users
+   ...>    ...> (first_name, last_name, email, created_at, updated_at)
+   ...>    ...> VALUES
+   ...>  ('Joshua', 'Teng', 'jedicoder@example.com', DATETIME('now'), DATETIME('now'));
+Error: near ".": syntax error
+sqlite> INSERT INTO users
+   ...> (first_name, last_name, email, created_at, updated_at)
+   ...> VALUES
+   ...> ('Joshua', 'Teng', 'jedicoder@example.com', DATETIME('now'), DATETIME('now'));
+Error: UNIQUE constraint failed: users.email
+sqlite> select * from users;
+1|Joshua|Teng|jedicoder@example.com|2018-07-25 05:50:57|2018-07-25 05:50:57
+2|Benjamin|Gibbons|b.g188s@gmail.com|2018-07-25 05:55:32|2018-07-25 05:55:32
+sqlite> ('Joshua', 'Teng', 'jedicode@example.com', DATETIME('now'), DATETIME('now'));
+Error: near "(": syntax error
+sqlite> INSERT INTO users
+   ...> ('Joshua', 'Teng', 'jedicode@example.com', DATETIME('now'), DATETIME('now'));
+Error: near "(": syntax error
+sqlite> INSERT INTO users                                                               ...> VALUES                                                                          ...> ;
+;
+Error: near ";": syntax error
+sqlite> INSERT INTO users                                                               ...> (first_name, last_name, email, created_at, updated_at)
+   ...> VALUES
+   ...> ('Joshua', 'Teng', 'jedicode@example.com', DATETIME('now'), DATETIME('now'));
+sqlite> select * from users;                                                         1|Joshua|Teng|jedicoder@example.com|2018-07-25 05:50:57|2018-07-25 05:50:57
+2|Benjamin|Gibbons|b.g188s@gmail.com|2018-07-25 05:55:32|2018-07-25 05:55:32
+3|Joshua|Teng|jedicode@example.com|2018-07-25 06:06:01|2018-07-25 06:06:01
+sqlite> .schema
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  first_name VARCHAR(64) NOT NULL,
+  last_name VARCHAR(64) NOT NULL,
+  email VARCHAR(128) UNIQUE NOT NULL,
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME NOT NULL
+);
+CREATE TABLE sqlite_sequence(name,seq);
+sqlite> ALTER TABLE users ( nicknames VARCHAR(64) NOT NULL);
+Error: near "(": syntax error
+sqlite> ALTER TABLE users (nicknames VARCHAR(64) NOT NULL);
+Error: near "(": syntax error
+sqlite> ALTER TABLE users ADD nickname TEXT;
+sqlite> select * from users;
+1|Joshua|Teng|jedicoder@example.com|2018-07-25 05:50:57|2018-07-25 05:50:57|
+2|Benjamin|Gibbons|b.g188s@gmail.com|2018-07-25 05:55:32|2018-07-25 05:55:32|
+3|Joshua|Teng|jedicode@example.com|2018-07-25 06:06:01|2018-07-25 06:06:01|
+sqlite> UPDATE users SET nickname = 'Dave' WHERE last_name = 'Teng';
+sqlite> select * users
+   ...> select * from users;
+Error: near "users": syntax error
+sqlite> SELECT * FROM users;
+1|Joshua|Teng|jedicoder@example.com|2018-07-25 05:50:57|2018-07-25 05:50:57|Dave
+2|Benjamin|Gibbons|b.g188s@gmail.com|2018-07-25 05:55:32|2018-07-25 05:55:32|
+3|Joshua|Teng|jedicode@example.com|2018-07-25 06:06:01|2018-07-25 06:06:01|Dave
+sqlite> UPDATE users SET first_name = 'Josh', nickname = 'Dave'  WHERE first_name = 'Joshua';
+sqlite> SELECT * FROM users;
+1|Josh|Teng|jedicoder@example.com|2018-07-25 05:50:57|2018-07-25 05:50:57|Dave
+2|Benjamin|Gibbons|b.g188s@gmail.com|2018-07-25 05:55:32|2018-07-25 05:55:32|
+3|Josh|Teng|jedicode@example.com|2018-07-25 06:06:01|2018-07-25 06:06:01|Dave
+sqlite> UPDATE users SET first_name = 'Josh', nickname = 'Ninja Coder'  WHERE first_name = 'Joshua';
+sqlite> SELECT * FROM users
+   ...> SELECT * FROM users;
+Error: near "SELECT": syntax error
+sqlite> SELECT * FROM users;
+1|Josh|Teng|jedicoder@example.com|2018-07-25 05:50:57|2018-07-25 05:50:57|Dave
+2|Benjamin|Gibbons|b.g188s@gmail.com|2018-07-25 05:55:32|2018-07-25 05:55:32|
+3|Josh|Teng|jedicode@example.com|2018-07-25 06:06:01|2018-07-25 06:06:01|Dave
+sqlite> UPDATE users SET first_name = 'Josh', nickname = 'Ninja Coder'  WHERE first_name = 'Josh';
+sqlite> SELECT * FROM users;
+1|Josh|Teng|jedicoder@example.com|2018-07-25 05:50:57|2018-07-25 05:50:57|Ninja Coder
+2|Benjamin|Gibbons|b.g188s@gmail.com|2018-07-25 05:55:32|2018-07-25 05:55:32|
+3|Josh|Teng|jedicode@example.com|2018-07-25 06:06:01|2018-07-25 06:06:01|Ninja Coder
+sqlite> UPDATE users SET updated_at = DATETIME('now') WHERE first_name = 'Josh';
+sqlite> SELECT * FROM users;
+1|Josh|Teng|jedicoder@example.com|2018-07-25 05:50:57|2018-07-25 06:27:35|Ninja Coder
+2|Benjamin|Gibbons|b.g188s@gmail.com|2018-07-25 05:55:32|2018-07-25 05:55:32|
+3|Josh|Teng|jedicode@example.com|2018-07-25 06:06:01|2018-07-25 06:27:35|Ninja Coder
+sqlite>
